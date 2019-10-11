@@ -108,11 +108,7 @@ In the ExtendScript Toolkit connect to Premiere Pro and invoke the following com
 
 ```
 app.enableQE();
-```
-```
 taskQueueManagerObj = qe.tqm.logIntoTaskQueueManager("");
-```
-```
 var authTokenObj = qe.tqm.getAuthToken();
 var bearerToken = authTokenObj.token;
 ```
