@@ -14,11 +14,11 @@ content of e.g. encode jobs is composed of the project file (or team project sna
 ## Installing a worker
 
 
-###Install Java jdk 11
-###Install Premiere Pro 14.0 and Adobe Media Encoder 14.0 (2020)
-###The worker can be installed by extracting the zip file to any folder on a machine. It can also be setup to run as a service or started as a process.
-###Retrieve the account credentials from console.adobe.io and configure the cc-worker.xml file
-###Make sure there is a queue already created to be set on the worker (created via API or from Premiere Pro DOM calls)
+### Install Java jdk 11
+### Install Premiere Pro 14.0 and Adobe Media Encoder 14.0 (2020)
+### The worker can be installed by extracting the zip file to any folder on a machine. It can also be setup to run as a service or started as a process.
+### Retrieve the account credentials from console.adobe.io and configure the cc-worker.xml file
+### Make sure there is a queue already created to be set on the worker (created via API or from Premiere Pro DOM calls)
 
 
 ## Account setup
