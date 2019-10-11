@@ -268,10 +268,10 @@ the creation timestamp of the job in the 'YYYY-MM-DDTHH:MM:SS.XXXZ'format.
 
 ##### job.estimatedCompletion- returns a String created property
 
-##### the estimated completion time inthe 'YYYY-MM-DDTHH:MM:SS.XXXZ'format.
+the estimated completion time inthe 'YYYY-MM-DDTHH:MM:SS.XXXZ'format.
 
 
-job.lastModified- returns a String lastModified property
+##### job.lastModified- returns a String lastModified property
 
 the last modification timestamp of the job in the'YYYY-MM-DDTHH:MM:SS.XXXZ'format.
 
@@ -324,7 +324,7 @@ cancel the job
 
 process the request sync (blocking)
 
-job.loadSync(job.identifier) - take job id as string input andreturns a job id(success) and refreshes the property of job passed as input
+##### job.loadSync(job.identifier) - take job id as string input andreturns a job id(success) and refreshes the property of job passed as input
 
 process the request sync (blocking)
 
@@ -334,11 +334,14 @@ process the request async (non-blocking)
 
 #### Additional Snapshot Methods
 
-##### app.project.rootItem.children[childNumber].saveProjectSnapshot(snapShotPath) - take childNumber as integer, snapShotPath as string and returns a Boolean (success)
+##### app.project.rootItem.children[childNumber].saveProjectSnapshot(snapShotPath) 
+take childNumber as integer, snapShotPath as string and returns a Boolean (success)
 
-##### app.anywhere.openTeamProjectSnapshot(snapShotPath) - take snapShotPath as string and returns a Boolean (success)
+##### app.anywhere.openTeamProjectSnapshot(snapShotPath) 
+ take snapShotPath as string and returns a Boolean (success)
 
-##### project.applyProjectSnapshot(snapShotPath, keepSessionProperties,deleteAssetsNotInSnapshot) - take snapShotPath as string, keepSessionProperties as boolean,  deleteAssetsNotInSnapshot as boolean returns a Boolean (success)
+##### project.applyProjectSnapshot(snapShotPath, keepSessionProperties,deleteAssetsNotInSnapshot) 
+take snapShotPath as string, keepSessionProperties as boolean,  deleteAssetsNotInSnapshot as boolean returns a Boolean (success)
 
 The snapshot contents will be merged into the currently-open Team Project. If keepSessionProperties is set to true, the existing properties will not be replaced; otherwise, the project name and description will be replaced by those of the snapshot. If deleteAssetsNotInSnapshot is set to true, any assets not in the snapshot will be deleted; otherwise, the snapshot will be merged into the existing project (snapshot assets will overwrite any existing identical assets).
 
