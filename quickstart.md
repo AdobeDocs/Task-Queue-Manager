@@ -332,6 +332,16 @@ process the request sync (blocking)
 
 process the request async (non-blocking)
 
+#### Additional Snapshot Methods
+
+##### app.project.rootItem.children[childNumber].saveProjectSnapshot(snapShotPath) - take childNumber as integer, snapShotPath as string and returns a Boolean (success)
+
+##### app.anywhere.openTeamProjectSnapshot(snapShotPath) - take snapShotPath as string and returns a Boolean (success)
+
+##### project.applyProjectSnapshot(snapShotPath, keepSessionProperties,deleteAssetsNotInSnapshot) - take snapShotPath as string, keepSessionProperties as boolean,  deleteAssetsNotInSnapshot as boolean returns a Boolean (success)
+
+The snapshot contents will be merged into the currently-open Team Project. If keepSessionProperties is set to true, the existing properties will not be replaced; otherwise, the project name and description will be replaced by those of the snapshot. If deleteAssetsNotInSnapshot is set to true, any assets not in the snapshot will be deleted; otherwise, the snapshot will be merged into the existing project (snapshot assets will overwrite any existing identical assets).
+
 ## Adobe Task Queue Manager API documentation
 
 ## Table of Contents
