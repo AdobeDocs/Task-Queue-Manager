@@ -13,13 +13,14 @@ content of e.g. encode jobs is composed of the project file (or team project sna
 
 ## Installing a worker
 
-```
-Install Java jdk 11
-Install Premiere Pro 14.0 and Adobe Media Encoder 14.0 (2020)
-The worker can be installed by extracting the zip file to any folder on a machine. It can also be setup to run as a service or started as a process.
-Retrieve the account credentials from console.adobe.io and configure the cc-worker.xml file
-Make sure there is a queue already created to be set on the worker (created via API or from Premiere Pro DOM calls)
-```
+
+###Install Java jdk 11
+###Install Premiere Pro 14.0 and Adobe Media Encoder 14.0 (2020)
+###The worker can be installed by extracting the zip file to any folder on a machine. It can also be setup to run as a service or started as a process.
+###Retrieve the account credentials from console.adobe.io and configure the cc-worker.xml file
+###Make sure there is a queue already created to be set on the worker (created via API or from Premiere Pro DOM calls)
+
+
 ## Account setup
 
 Login using an administrator account of your domain onhttps://console.adobe.io/. And choose to create a new integration.
@@ -37,7 +38,7 @@ create-a-public-key-certificate. Drag the "certificate_pub.crt" into the drop bo
 
 
 The integration is now created and you can use the following page to retrieve all configuration values needed to setup a worker. (API_ADOBE_USER_ID
-in the config file refers to theTechnical account ID on this page)
+in the config file refers to the Technical account ID on this page)
 
 ### Running as a process (for debugging only)
 
@@ -108,7 +109,7 @@ In the ExtendScript Toolkit connect to Premiere Pro and invoke the following com
 
 ```
 app.enableQE();
-taskQueueManagerObj = qe.tqm.logIntoTaskQueueManager("");
+taskQueueManagerObj = qe.tqm.logIntoTaskQueueManager();
 var authTokenObj = qe.tqm.getAuthToken();
 var bearerToken = authTokenObj.token;
 ```
@@ -128,7 +129,7 @@ This example script will lookup a queue from the list of existing queues (withou
 being created by an administrator (assigned to the organisation) which all users can share for submitting work to the central pool of workers.
 
 ```
-qe.tqm.logIntoTaskQueueManager("");
+qe.tqm.logIntoTaskQueueManager();
 var queueId = "same-queue-id-as-used-in-the-worker";
 var queueList = qe.tqm.getQueueListObject();
 queueList.loadSync();
