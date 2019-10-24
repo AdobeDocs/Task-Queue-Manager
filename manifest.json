@@ -1,24 +1,26 @@
 {
-"name": "Adobe Task Queue Manager APIs",
-"version": "1.0.0",
-"description": "Task Queue Manager ",
-"author": "Kanika Gera",
-"view_type": "mdbook",
-"meta_keywords": "adobe task queue manager",
-"meta_description": "Adobe Task Queue Manager documentation",
-"publish_date": "09/19/2018",
-"show_edit_github_banner": true,
-"base_path": "https://raw.githubusercontent.com",
-"pages": [
-{
-"importedFileName": "index",
-"pages": [
-        {
-          "importedFileName": "quickstart",
-          "pages": [],
-          "path": "AdobeDocs/Task-Queue-Manager/stage/quickstart.md",
-          "title": "Getting started with Task Queue Manager API"
-        }
-]
+  "name":"Adobe Task Queue Manager APIs",
+  "version":"1.0.0",
+  "description":"Task Queue Manager ",
+  "author":"Kanika Gera",
+  "view_type":"mdbook",
+  "meta_keywords":"adobe task queue manager",
+  "meta_description":"Adobe Task Queue Manager documentation",
+  "publish_date":"09/19/2018",
+  "show_edit_github_banner":true,
+  "base_path":"https://raw.githubusercontent.com",
+  "pages":[
+     {
+        "importedFileName":"index",
+        "pages":[
+           {
+              "importedFileName":"quickstart",
+              "pages":[
+              ],
+              "path":"AdobeDocs/Task-Queue-Manager/stage/quickstart.md",
+              "title":"Getting started with Task Queue Manager API"
+           }
+        ]
+     }
+  ]
 }
-]
