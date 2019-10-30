@@ -156,7 +156,7 @@ Attached debug database file will only enable 'New World' scripting engine and
 rest of debug flags default to original values. If other debug flags are also
 being used, they need to be taken care of also.
 
-1.  Launch Premiere Pro. Open any project. Press
+2.  Launch Premiere Pro. Open any project. Press
     CTRL+F12(Windows)/Command+Fn+F12(Mac) that will open Console Window. Click
     on hamburger menu next to Console and select Debug Database View. Search for
     debug flag ScriptLayerPPro.EnableNewWorld and change it to true by selecting
