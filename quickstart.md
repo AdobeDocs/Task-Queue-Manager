@@ -363,11 +363,11 @@ keytool -importkeystore \
 keytool -changealias -keystore keystore.ks -alias 1 -destalias AdobePrivateKey
 ```
 
-### Resources
+## Resources
 
-#### Discovery Links
+### Discovery Links
 
-GET /
+**GET / **
 
 Returns the list of all links available on the root API.
 
@@ -384,7 +384,7 @@ Response fields
 
 |  Path | Type | Optional | Description |
 | ------------- | ------------- | ------------- | ------------- |
-| Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| activeRegion  | String  | true  |  |
 
 
 Example request
