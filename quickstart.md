@@ -116,8 +116,7 @@ Task Queue Manager features are supported only on 'New World' scripting engine w
 
 
 
-
-2. The debug files changes following flag with respect to each product:
+The debug files changes following flag with respect to each product:
 
 	Premiere Pro: ScriptLayerPPro.EnableNewWorld to true
 
@@ -129,7 +128,7 @@ Task Queue Manager features are supported only on 'New World' scripting engine w
 
 
 
-Launch Premiere Pro. Open any project. Press CTRL+F12(Windows)/Command+Fn+F12(Mac) that will open Console Window. Click on hamburger menu next to Console and select Debug Database View. Search for debug flag ScriptLayerPPro.EnableNewWorld  and change it to true by selecting the checkbox. New settings will take place on re launch. Launch Adobe Media Encoder, Press CTRL+F12 that will open Console Window. Click on hamburger menu next to Console and select Debug Database View. Search for debug flag AME.ScriptLayer.EnableNewWorld  and change it to true by selecting the checkbox. New settings will take place on re launch.
+2. Launch Premiere Pro. Open any project. Press CTRL+F12(Windows)/Command+Fn+F12(Mac) that will open Console Window. Click on hamburger menu next to Console and select Debug Database View. Search for debug flag ScriptLayerPPro.EnableNewWorld  and change it to true by selecting the checkbox. New settings will take place on re launch. Launch Adobe Media Encoder, Press CTRL+F12 that will open Console Window. Click on hamburger menu next to Console and select Debug Database View. Search for debug flag AME.ScriptLayer.EnableNewWorld  and change it to true by selecting the checkbox. New settings will take place on re launch.
 
 
 ## Developer guide
