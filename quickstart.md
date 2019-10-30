@@ -138,7 +138,9 @@ worker machine using one of the following methods.
 |---------------|----------------------------------------------------------|-------------------------------------------------------------|
 | Windows       | C:\<UserName\>Media Encoder4.0                           | C:Pro4.0                                                    |
 | Mac           | /Users//Documents/Adobe/Adobe Media Encoder/14.0/        | /Users//Library/Preferences/Adobe/Premiere Pro/14.0/        |
+
 | Beta Builds   | Media Encoder                                            | Premiere Pro                                                |
+|---------------|----------------------------------------------------------|-------------------------------------------------------------|
 | Windows       | C:\<UserName\>Media Encoder (Beta)4.0                    | C:\<UserName\>Pro (Beta)4.0                                 |
 | Mac           | /Users//Documents/Adobe/Adobe Media Encoder (Beta)/14.0/ | /Users//Library/Preferences/Adobe/Premiere Pro (Beta)/14.0/ |
 
