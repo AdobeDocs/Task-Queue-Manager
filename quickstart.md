@@ -71,7 +71,7 @@ a JWT token on Adobe.io. Make sure to use a local user which has sufficient
 rights to start both Premiere Pro and Adobe Media Encoder. The service should
 not be run on the default service account.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 <service>
 <id>dva-worker</id>
 <name>Adobe Task Queue Manager</name>
@@ -99,21 +99,18 @@ not be run on the default service account.
 <allowservicelogon>true</allowservicelogon>
 </serviceaccount>
 </service>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 The process can be setup to run as a service as soon as the configuration file
 and keystore file are correctly setup:
 
 This requires Admin rights on the local machine
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-cc-worker.exe install
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```cc-worker.exe install
+```
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-cc-worker.exe start
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+```cc-worker.exe start
+```
 The process will populate log files to the /logs directory of the same folder.
 Make sure the process is running as a user which is allowed to write to that
 folder, and has rights to start Adobe Media Encoder. The correct user can be
@@ -146,11 +143,11 @@ worker machine using one of the following methods.
 
 The debug files changes following flag with respect to each product:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 Premiere Pro: ScriptLayerPPro.EnableNewWorld to true
 
 Media Encoder: AME.ScriptLayer.EnableNewWorld to true
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 Attached debug database file will only enable 'New World' scripting engine and
 rest of debug flags default to original values. If other debug flags are also
@@ -181,11 +178,11 @@ The integration on Adobe.Io can be created via:https://console
 In the ExtendScript Toolkit connect to Premiere Pro and invoke the following
 command:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 taskQueueManagerObj = qe.tqm.logIntoTaskQueueManager();
 var authTokenObj = qe.tqm.getAuthToken();
 var bearerToken = authTokenObj.token;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 ### Accessing the API
 
@@ -205,7 +202,7 @@ This example script will lookup a queue from the list of existing queues
 being created by an administrator (assigned to the organisation) which all users
 can share for submitting work to the central pool of workers.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 qe.tqm.logIntoTaskQueueManager();
 var queueId = "same-queue-id-as-used-in-the-worker";
 var queueList = qe.tqm.getQueueListObject();
@@ -227,7 +224,7 @@ var job = queue.createRemoteAMERenderJob(
 "c:\\worker\\harddrive\\or\\network\\share\\output.mp4"
 );
 var result = job.loadSync();
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 ### API
 
