@@ -382,9 +382,10 @@ No request body.
 
 Response fields
 
-| Path  | Type |  Optional | Description |
-| ------------- | ------------- | ------------- |
-| activeRegion  | String  | true |
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
 
 
 Example request
