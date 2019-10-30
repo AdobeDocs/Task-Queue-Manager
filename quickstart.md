@@ -122,7 +122,7 @@ The debug files changes following flag with respect to each product:
 
 	Media Encoder: AME.ScriptLayer.EnableNewWorld to true
 
-	Attached debug database file will only enable 'New World' scripting engine and rest of debug flags default to original values. If other debug flags are also being used, 	they need to be taken care of also.
+Attached debug database file will only enable 'New World' scripting engine and rest of debug flags default to original values. If other debug flags are also being used, they need to be taken care of also.
 
 
 
