@@ -23,7 +23,7 @@ content of e.g. encode jobs is composed of the project file (or team project sna
 
 ## Account setup
 
-Login using an administrator account of your domain onhttps://console.adobe.io/. And choose to create a new integration.
+Login using an administrator account of your domain on https://console.adobe.io/. And choose to create a new integration.
 
 
 On the following screen choose "Access an API"
@@ -161,7 +161,7 @@ All API calls are scoped to the qe dom.
 
 used to create an authentication token from the currently logged in user to communicate the the TQM API
 
-##### qe.tqm.loginByRegion(regionName,"") -returns Boolean (success)
+##### qe.tqm.loginByRegion(regionName) -returns Boolean (success)
 
 used to create an authentication token from the currently logged in user on the region provided as string parameter to communicate the the TQM API
 
