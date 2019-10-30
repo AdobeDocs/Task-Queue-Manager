@@ -405,32 +405,77 @@ keytool -changealias -keystore keystore.ks -alias 1 -destalias AdobePrivateKey
 
 Returns the list of all links available on the root API.
 
-##### Path parameters
+#### Path parameters
 
 No parameters.
 
-##### Query parameters
+#### Query parameters
 
 No parameters.
 
-##### Request fields
+#### Request fields
 
 No request body.
 
-##### Response fields
+#### Response fields
 
 |  Path | Type | Optional | Description |
 | ------------- | ------------- | ------------- | ------------- |
 | activeRegion  | String  | true  |  |
 
 
-##### Example request
+#### Example request
 
 $ curl 'https://cloud-dispatcher-beta.adobe.io/' -i -X GET \
     -H 'X-Api-Key: your-api-key' \
     -H 'Authorization: Bearer the-access-token'
 
-##### Example response
+#### Example response
+
+HTTP/1.1 200 OK
+Content-Type: application/hal+json;charset=UTF-8
+Content-Length: 797
+
+```
+{ "activeRegion" : "region-unknown", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io" }, "jobs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/{?page,size}", "templated" : true }, "queues" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/{?page,size}", "templated" : true }, "workers" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/workers/{?page,size}", "templated" : true }, "region-ue1" : { "href" : "https://cloud-dispatcher-beta-ue1.adobe.io" }, "region-ew1" : { "href" : "https://cloud-dispatcher-beta-ew1.adobe.io" }, "region-an1" : { "href" : "https://cloud-dispatcher-beta-an1.adobe.io" } } }
+```
+
+### List My jobs
+
+* GET /api/v1/jobs/
+
+#### Path parameters
+
+No parameters.
+
+#### Query parameters
+
+
+|  Path | Type | Optional | Description |
+| ------------- | ------------- | ------------- | ------------- |
+| page  | Integer  | true  | Default value: '0'. |
+| size  | Integer  | true  | Default value: '50'. |
+
+
+
+#### Request fields
+
+No request body.
+
+#### Response fields
+
+|  Path | Type | Optional | Description |
+| ------------- | ------------- | ------------- | ------------- |
+| activeRegion  | String  | true  |  |
+
+
+#### Example request
+
+$ curl 'https://cloud-dispatcher-beta.adobe.io/' -i -X GET \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Authorization: Bearer the-access-token'
+
+#### Example response
 
 HTTP/1.1 200 OK
 Content-Type: application/hal+json;charset=UTF-8
