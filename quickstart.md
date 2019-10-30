@@ -681,3 +681,46 @@ Content-Length: 848
 ```
 
 
+### Delete Worker 
+-   DELETE /api/v1/workers/{id}
+
+#### Path parameters
+
+| Parameter | Type   | Optional | Description |
+|-----------|--------|----------|-------------|
+| id        | Object | false    |             |
+
+#### Query parameters
+
+No parameters
+
+
+#### Request fields
+
+No request body
+
+
+#### Response fields
+
+| Path           | Type    | Optional | Description |
+|----------------|---------|----------|-------------|
+| lastModified   | String  | true     |             |
+| totalProcessed | Integer | true     |             |
+| name           | String  | true     |             |
+| state          | String  | true     |             |
+| owner          | String  | true     |             |
+| id             | String  | true     |             |
+
+#### Example request
+
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/workers/f895c6d6-4709-45b7-babe-06d93ff573a5' -i -X DELETE \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Authorization: Bearer the-access-token' \
+    -H 'Content-Type: application/json;charset=UTF-8'
+
+#### Example response
+
+HTTP/1.1 204 No Content
+
+
+
