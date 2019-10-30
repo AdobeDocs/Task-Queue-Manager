@@ -611,19 +611,23 @@ No parameters
 
 #### Example request
 
-curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/dd7d9b8e-f315-45dc-af9d-641f07e4b6e1/inputs/presign' -i -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{"payloads":[{"index":1,"length":123,"name":"input.prproj"}]}'
+\$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/' -i -X GET \\
+
+\-H 'X-Api-Key: your-api-key' \\
+
+\-H 'Authorization: Bearer the-access-token'
 
 #### Example response
 
 HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 124
+
+Content-Length: 2078
+
+Content-Type: application/hal+json;charset=UTF-8
 
 ```
-{ "signedPayloadPairs" : [ { "index" : 0, "requestIndex" : 1, "signedUploadURL" : "https://signed-url" } ] }
-```
+{ "_embedded" : { "jobResourceList" : [ { "lastModified" : "2019-09-18T08:37:58.577138Z", "progressState" : null, "estimatedCompletion" : null, "created" : "2019-09-18T08:37:58.577133Z", "lockId" : "workerId", "progress" : 0.0, "name" : "Encode Project to MP4", "state" : "WAITING", "type" : "AME.2020.encode", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573" }, "inputs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/inputs" }, "inputs-presign" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/inputs/presign" }, "results" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/results" }, "results-presign" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/results/presign" }, "waitForCancel" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/waitFor/canceled" }, "job-updates" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/updatedSince/2019-09-18T08:37:58.577138Z" } }, "id" : "2e46f6a6-a933-4192-b609-d3bb40242573" } ] }, "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/?page=0&size=50&sort=lastModified,desc" }, "byId" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/{id}", "templated" : true }, "updates" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/since/2019-09-18T08:37:58.577138Z/" } }, "page" : { "size" : 50, "totalElements" : 1, "totalPages" : 1, "number" : 0 } }
+
 
 
 
