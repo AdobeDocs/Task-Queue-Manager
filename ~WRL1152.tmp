@@ -97,41 +97,6 @@ Manager" service and inspecting the "log on" tag. It should show the service usi
 
 Please note cc-worker.exe install has to be repeated every time the user password is changed in the configuration.
 
-### Prerequisite:
-
-Task Queue Manager features are supported only on 'New World' scripting engine which is not the default on Premiere Pro/ AME 14.0.0 builds. Therefore in order to use Task Queue Manager, New World needs to be enabled on all clients and worker machine using one of the following methods. 
-
-1. Quit Premiere Pro/ Media Encoder. Copy attached debug files for AME and Premiere Pro and replace them at following location.
-
-	|  Stable Builds | Media Encoder | Premiere Pro | 
-	| ------------- | ------------- | ------------- |
-	| Windows | C:\Users\<UserName>\Documents\Adobe\Adobe Media Encoder\14.0\ | C:\Users\Administrator\AppData\Roaming\Adobe\Premiere Pro\14.0\ |
-	| Mac | /Users/<UserName>/Documents/Adobe/Adobe Media Encoder/14.0/ | /Users/<UserName>/Library/Preferences/Adobe/Premiere Pro/14.0/ | 
-
-
-	|  Beta Builds | Media Encoder | Premiere Pro | 
-	| ------------- | ------------- | ------------- |
-	| Windows | 	C:\Users\<UserName>\Documents\Adobe\Adobe Media Encoder (Beta)\14.0\ | C:\Users\<UserName>\AppData\Roaming\Adobe\Premiere Pro (Beta)\14.0\ |
-	| Mac | /Users/<UserName>/Documents/Adobe/Adobe Media Encoder (Beta)/14.0/ | /Users/<UserName>/Library/Preferences/Adobe/Premiere Pro (Beta)/14.0/ | 
-
-
-
-
-2. The debug files changes following flag with respect to each product:
-
-	Premiere Pro: ScriptLayerPPro.EnableNewWorld to true
-
-	Media Encoder: AME.ScriptLayer.EnableNewWorld to true
-
-	Attached debug database file will only enable 'New World' scripting engine and rest of debug flags default to original values. If other debug flags are also being used, 	they need to be taken care of also.
-
-
-
-
-
-Launch Premiere Pro. Open any project. Press CTRL+F12(Windows)/Command+Fn+F12(Mac) that will open Console Window. Click on hamburger menu next to Console and select Debug Database View. Search for debug flag ScriptLayerPPro.EnableNewWorld  and change it to true by selecting the checkbox. New settings will take place on re launch. Launch Adobe Media Encoder, Press CTRL+F12 that will open Console Window. Click on hamburger menu next to Console and select Debug Database View. Search for debug flag AME.ScriptLayer.EnableNewWorld  and change it to true by selecting the checkbox. New settings will take place on re launch.
-
-
 ## Developer guide
 
 ### Generating an API token
