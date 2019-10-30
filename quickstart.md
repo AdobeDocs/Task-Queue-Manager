@@ -454,7 +454,7 @@ every request.
 
 ### Creating the worker keystore file and certificate
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 openssl req -nodes -text -x509 -newkey rsa:2048 -keyout secret.pem -out certificate.pem -days 356
 
 openssl pkcs8 -topk8 -inform PEM -outform DER -in secret.pem  -nocrypt > secret.key
@@ -466,7 +466,7 @@ keytool -importkeystore \
         -srckeystore my.p12 -srcstoretype PKCS12 -srcstorepass 123456
 
 keytool -changealias -keystore keystore.ks -alias 1 -destalias AdobePrivateKey
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 Resources
 ---------
@@ -509,10 +509,8 @@ Content-Type: application/hal+json;charset=UTF-8
 
 Content-Length: 797
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{ "activeRegion" : "region-unknown", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io" }, "jobs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/{?page,size}", "templated" : true }, "queues" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/{?page,size}", "templated" : true }, "workers" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/workers/{?page,size}", "templated" : true }, "region-ue1" : { "href" : "https://cloud-dispatcher-beta-ue1.adobe.io" }, "region-ew1" : { "href" : "https://cloud-dispatcher-beta-ew1.adobe.io" }, "region-an1" : { "href" : "https://cloud-dispatcher-beta-an1.adobe.io" } } }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+```{ "activeRegion" : "region-unknown", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io" }, "jobs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/{?page,size}", "templated" : true }, "queues" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/{?page,size}", "templated" : true }, "workers" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/workers/{?page,size}", "templated" : true }, "region-ue1" : { "href" : "https://cloud-dispatcher-beta-ue1.adobe.io" }, "region-ew1" : { "href" : "https://cloud-dispatcher-beta-ew1.adobe.io" }, "region-an1" : { "href" : "https://cloud-dispatcher-beta-an1.adobe.io" } } }
+```
 ### List My jobs
 
 -   GET /api/v1/jobs/
@@ -569,13 +567,8 @@ Content-Length: 2078
 
 Content-Type: application/hal+json;charset=UTF-8
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 { "_embedded" : { "jobResourceList" : [ { "lastModified" : "2019-09-18T08:37:58.577138Z", "progressState" : null, "estimatedCompletion" : null, "created" : "2019-09-18T08:37:58.577133Z", "lockId" : "workerId", "progress" : 0.0, "name" : "Encode Project to MP4", "state" : "WAITING", "type" : "AME.2020.encode", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573" }, "inputs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/inputs" }, "inputs-presign" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/inputs/presign" }, "results" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/results" }, "results-presign" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/results/presign" }, "waitForCancel" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/waitFor/canceled" }, "job-updates" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/updatedSince/2019-09-18T08:37:58.577138Z" } }, "id" : "2e46f6a6-a933-4192-b609-d3bb40242573" } ] }, "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/?page=0&size=50&sort=lastModified,desc" }, "byId" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/{id}", "templated" : true }, "updates" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/since/2019-09-18T08:37:58.577138Z/" } }, "page" : { "size" : 50, "totalElements" : 1, "totalPages" : 1, "number" : 0 } }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+```
 
 
