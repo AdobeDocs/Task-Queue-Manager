@@ -382,10 +382,9 @@ No request body.
 
 Response fields
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+|  Path | Type | Optional | Description |
+| ------------- | ------------- | ------------- | ------------- |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  |
 
 
 Example request
