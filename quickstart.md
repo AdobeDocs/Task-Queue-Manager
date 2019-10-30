@@ -367,7 +367,7 @@ keytool -changealias -keystore keystore.ks -alias 1 -destalias AdobePrivateKey
 
 ### Discovery Links
 
-**GET / **
+* GET / 
 
 Returns the list of all links available on the root API.
 
