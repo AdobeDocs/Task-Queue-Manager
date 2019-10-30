@@ -381,7 +381,12 @@ Request fields
 No request body.
 
 Response fields
-PathTypeOptionalDescriptionactiveRegionStringtrue
+
+| Path  | Type |  Optional | Description |
+| ------------- | ------------- | ------------- |
+| activeRegion  | String  | true |
+
+
 Example request
 $ curl 'https://cloud-dispatcher-beta.adobe.io/' -i -X GET \
     -H 'X-Api-Key: your-api-key' \
