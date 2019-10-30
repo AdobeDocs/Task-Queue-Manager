@@ -1,58 +1,77 @@
-# Adobe Task Queue Manager getting started guide
+Adobe Task Queue Manager getting started guide
+==============================================
 
-## Introduction
+Introduction
+------------
 
-This guide describes how to setup a system to allow access to the cloud API of the Adobe Task Queue Manager and perform a set of basic requests.
+This guide describes how to setup a system to allow access to the cloud API of
+the Adobe Task Queue Manager and perform a set of basic requests.
 
-## Features
+Features
+--------
 
-Task Queue Manager allows customers to send jobs from one machine to another while receiving real time updates about progress. These jobs can either
-be encode jobs (similar to Adobe Media Encoder Remote) or script jobs with arbitrary extension code. The transfer and delivery from the client to the
-server machine is handled by queues in the cloud. A server/worker can be deployed to any computer running PremierePro or Adobe Media Encoder. The
-content of e.g. encode jobs is composed of the project file (or team project snapshot) an optional export preset file and meta data.
+Task Queue Manager allows customers to send jobs from one machine to another
+while receiving real time updates about progress. These jobs can either be
+encode jobs (similar to Adobe Media Encoder Remote) or script jobs with
+arbitrary extension code. The transfer and delivery from the client to the
+server machine is handled by queues in the cloud. A server/worker can be
+deployed to any computer running PremierePro or Adobe Media Encoder. The content
+of e.g. encode jobs is composed of the project file (or team project snapshot)
+an optional export preset file and meta data.
 
-## Installing a worker
+Installing a worker
+-------------------
 
+-   Install Java jdk 11
 
-* Install Java jdk 11
-* Install Premiere Pro 14.0 and Adobe Media Encoder 14.0 (2020)
-* The worker can be installed by extracting the zip file to any folder on a machine. It can also be setup to run as a service or started as a process.
-* Retrieve the account credentials from console.adobe.io and configure the cc-worker.xml file
-* Make sure there is a queue already created to be set on the worker (created via API or from Premiere Pro DOM calls)
+-   Install Premiere Pro 14.0 and Adobe Media Encoder 14.0 (2020)
 
+-   The worker can be installed by extracting the zip file to any folder on a
+    machine. It can also be setup to run as a service or started as a process.
 
-## Account setup
+-   Retrieve the account credentials from console.adobe.io and configure the
+    cc-worker.xml file
 
-Login using an administrator account of your domain on https://console.adobe.io/. And choose to create a new integration.
+-   Make sure there is a queue already created to be set on the worker (created
+    via API or from Premiere Pro DOM calls)
 
+Account setup
+-------------
+
+Login using an administrator account of your domain on
+https://console.adobe.io/. And choose to create a new integration.
 
 On the following screen choose "Access an API"
 
 Choose "Task Queue Manager" from the list.
 
-In the following screen you can name the integration and provide a security certificate used for authentication - see the "Creating the worker keystore file
+In the following screen you can name the integration and provide a security
+certificate used for authentication - see the "Creating the worker keystore file
 and certificate" chapter in the developer guide below or
 
-https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/AuthenticationOverview/ServiceAccountIntegration.md#step-2-
-create-a-public-key-certificate. Drag the "certificate_pub.crt" into the drop box and continue.
+https://www.adobe.io/authentication/auth-methods.html\#!AdobeDocs/adobeio-auth/master/AuthenticationOverview/ServiceAccountIntegration.md\#step-2-
+create-a-public-key-certificate. Drag the "certificate_pub.crt" into the drop
+box and continue.
 
-
-The integration is now created and you can use the following page to retrieve all configuration values needed to setup a worker. (API_ADOBE_USER_ID
-in the config file refers to the Technical account ID on this page)
+The integration is now created and you can use the following page to retrieve
+all configuration values needed to setup a worker. (API_ADOBE_USER_ID in the
+config file refers to the Technical account ID on this page)
 
 ### Running as a process (for debugging only)
 
-Update the run-as-process.bat file found in the worker directory with the information found on the adobe.io developer console. Then start the bat file. Make
-sure java RE >= 11 is installed and available on the PATH.
+Update the run-as-process.bat file found in the worker directory with the
+information found on the adobe.io developer console. Then start the bat file.
+Make sure java RE \>= 11 is installed and available on the PATH.
 
 ### Running as a service
 
-The configuration file cc-worker.xml can be found in the service folder. The XML lists all required values which were generated in the previous step for
-creating a JWT token on Adobe.io. Make sure to use a local user which has sufficient rights to start both Premiere Pro and Adobe Media Encoder. The
-service should not be run on the default service account.
+The configuration file cc-worker.xml can be found in the service folder. The XML
+lists all required values which were generated in the previous step for creating
+a JWT token on Adobe.io. Make sure to use a local user which has sufficient
+rights to start both Premiere Pro and Adobe Media Encoder. The service should
+not be run on the default service account.
 
-
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <service>
 <id>dva-worker</id>
 <name>Adobe Task Queue Manager</name>
@@ -80,88 +99,111 @@ service should not be run on the default service account.
 <allowservicelogon>true</allowservicelogon>
 </serviceaccount>
 </service>
-```
-The process can be setup to run as a service as soon as the configuration file and keystore file are correctly setup:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The process can be setup to run as a service as soon as the configuration file
+and keystore file are correctly setup:
 
 This requires Admin rights on the local machine
 
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 cc-worker.exe install
-```
-```
-cc-worker.exe start
-```
-The process will populate log files to the /logs directory of the same folder. Make sure the process is running as a user which is allowed to write to that
-folder, and has rights to start Adobe Media Encoder. The correct user can be verified when opening the service list, opening the "Adobe Task Queue
-Manager" service and inspecting the "log on" tag. It should show the service using a specific user account instead of "Local system account".
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Please note cc-worker.exe install has to be repeated every time the user password is changed in the configuration.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cc-worker.exe start
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The process will populate log files to the /logs directory of the same folder.
+Make sure the process is running as a user which is allowed to write to that
+folder, and has rights to start Adobe Media Encoder. The correct user can be
+verified when opening the service list, opening the "Adobe Task Queue Manager"
+service and inspecting the "log on" tag. It should show the service using a
+specific user account instead of "Local system account".
+
+Please note cc-worker.exe install has to be repeated every time the user
+password is changed in the configuration.
 
 ### Prerequisite:
 
-Task Queue Manager features are supported only on 'New World' scripting engine which is not the default on Premiere Pro/ AME 14.0.0 builds. Therefore in order to use Task Queue Manager, New World needs to be enabled on all clients and worker machine using one of the following methods. 
+Task Queue Manager features are supported only on 'New World' scripting engine
+which is not the default on Premiere Pro/ AME 14.0.0 builds. Therefore in order
+to use Task Queue Manager, New World needs to be enabled on all clients and
+worker machine using one of the following methods.
 
-1. Quit Premiere Pro/ Media Encoder. Copy attached debug files for AME and Premiere Pro and replace them at following location.
+1.  Quit Premiere Pro/ Media Encoder. Copy attached debug files for AME and
+    Premiere Pro and replace them at following location.
 
-	|  Stable Builds | Media Encoder | Premiere Pro | 
-	| ------------- | ------------- | ------------- |
-	| Windows | C:\Users\<UserName>\Documents\Adobe\Adobe Media Encoder\14.0\ | C:\Users\Administrator\AppData\Roaming\Adobe\Premiere Pro\14.0\ |
-	| Mac | /Users/<UserName>/Documents/Adobe/Adobe Media Encoder/14.0/ | /Users/<UserName>/Library/Preferences/Adobe/Premiere Pro/14.0/ | 
-
-
-	|  Beta Builds | Media Encoder | Premiere Pro | 
-	| ------------- | ------------- | ------------- |
-	| Windows | 	C:\Users\<UserName>\Documents\Adobe\Adobe Media Encoder (Beta)\14.0\ | C:\Users\<UserName>\AppData\Roaming\Adobe\Premiere Pro (Beta)\14.0\ |
-	| Mac | /Users/<UserName>/Documents/Adobe/Adobe Media Encoder (Beta)/14.0/ | /Users/<UserName>/Library/Preferences/Adobe/Premiere Pro (Beta)/14.0/ | 
-
-
+| Stable Builds | Media Encoder                                            | Premiere Pro                                                |
+|---------------|----------------------------------------------------------|-------------------------------------------------------------|
+| Windows       | C:\<UserName\>Media Encoder4.0                           | C:Pro4.0                                                    |
+| Mac           | /Users//Documents/Adobe/Adobe Media Encoder/14.0/        | /Users//Library/Preferences/Adobe/Premiere Pro/14.0/        |
+| Beta Builds   | Media Encoder                                            | Premiere Pro                                                |
+| Windows       | C:\<UserName\>Media Encoder (Beta)4.0                    | C:\<UserName\>Pro (Beta)4.0                                 |
+| Mac           | /Users//Documents/Adobe/Adobe Media Encoder (Beta)/14.0/ | /Users//Library/Preferences/Adobe/Premiere Pro (Beta)/14.0/ |
 
 The debug files changes following flag with respect to each product:
 
-	Premiere Pro: ScriptLayerPPro.EnableNewWorld to true
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Premiere Pro: ScriptLayerPPro.EnableNewWorld to true
 
-	Media Encoder: AME.ScriptLayer.EnableNewWorld to true
+Media Encoder: AME.ScriptLayer.EnableNewWorld to true
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Attached debug database file will only enable 'New World' scripting engine and rest of debug flags default to original values. If other debug flags are also being used, they need to be taken care of also.
+Attached debug database file will only enable 'New World' scripting engine and
+rest of debug flags default to original values. If other debug flags are also
+being used, they need to be taken care of also.
 
+1.  Launch Premiere Pro. Open any project. Press
+    CTRL+F12(Windows)/Command+Fn+F12(Mac) that will open Console Window. Click
+    on hamburger menu next to Console and select Debug Database View. Search for
+    debug flag ScriptLayerPPro.EnableNewWorld and change it to true by selecting
+    the checkbox. New settings will take place on re launch. Launch Adobe Media
+    Encoder, Press CTRL+F12 that will open Console Window. Click on hamburger
+    menu next to Console and select Debug Database View. Search for debug flag
+    AME.ScriptLayer.EnableNewWorld and change it to true by selecting the
+    checkbox. New settings will take place on re launch.
 
-
-
-
-2. Launch Premiere Pro. Open any project. Press CTRL+F12(Windows)/Command+Fn+F12(Mac) that will open Console Window. Click on hamburger menu next to Console and select Debug Database View. Search for debug flag ScriptLayerPPro.EnableNewWorld  and change it to true by selecting the checkbox. New settings will take place on re launch. Launch Adobe Media Encoder, Press CTRL+F12 that will open Console Window. Click on hamburger menu next to Console and select Debug Database View. Search for debug flag AME.ScriptLayer.EnableNewWorld  and change it to true by selecting the checkbox. New settings will take place on re launch.
-
-
-## Developer guide
+Developer guide
+---------------
 
 ### Generating an API token
 
-For testing purpose you can use the Premiere Pro scripting engine to request a token for the currently logged in user. In production this workflow will be
-replaced with:https://www.adobe.io/apis/cloudplatform/console/authentication/createjwt.html. The integration on Adobe.Io can be created via:https://console
+For testing purpose you can use the Premiere Pro scripting engine to request a
+token for the currently logged in user. In production this workflow will be
+replaced
+with:https://www.adobe.io/apis/cloudplatform/console/authentication/createjwt.html.
+The integration on Adobe.Io can be created via:https://console
 .adobe.io/integrations.
 
-In the ExtendScript Toolkit connect to Premiere Pro and invoke the following command:
+In the ExtendScript Toolkit connect to Premiere Pro and invoke the following
+command:
 
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 taskQueueManagerObj = qe.tqm.logIntoTaskQueueManager();
 var authTokenObj = qe.tqm.getAuthToken();
 var bearerToken = authTokenObj.token;
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ### Accessing the API
 
 The API can be accessed via the URL: https://cloud-dispatcher-beta.adobe.io
 
-The API uses the JSON+HAL format (https://en.wikipedia.org/wiki/Hypertext_Application_Language).
+The API uses the JSON+HAL format
+(https://en.wikipedia.org/wiki/Hypertext_Application_Language).
 
-
-It requires the "Authorization" header to be set to "Bearer yourBearerTokenFromExtendScriptHere" and the "X-Api-Key" header set to "task-queue-
-manager-beta-1".
+It requires the "Authorization" header to be set to "Bearer
+yourBearerTokenFromExtendScriptHere" and the "X-Api-Key" header set to
+"task-queue- manager-beta-1".
 
 ### Using the Task Queue Manager API from within Premiere Pro (DOM API)
 
-This example script will lookup a queue from the list of existing queues (without creating a new one). A typical workflow would involve one central queue
-being created by an administrator (assigned to the organisation) which all users can share for submitting work to the central pool of workers.
+This example script will lookup a queue from the list of existing queues
+(without creating a new one). A typical workflow would involve one central queue
+being created by an administrator (assigned to the organisation) which all users
+can share for submitting work to the central pool of workers.
 
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 qe.tqm.logIntoTaskQueueManager();
 var queueId = "same-queue-id-as-used-in-the-worker";
 var queueList = qe.tqm.getQueueListObject();
@@ -183,7 +225,8 @@ var job = queue.createRemoteAMERenderJob(
 "c:\\worker\\harddrive\\or\\network\\share\\output.mp4"
 );
 var result = job.loadSync();
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ### API
 
 All API calls are scoped to the qe dom.
@@ -192,11 +235,13 @@ All API calls are scoped to the qe dom.
 
 ##### qe.tqm.logIntoTaskQueueManager(callback-method-name) - returns Boolean (success)
 
-used to create an authentication token from the currently logged in user to communicate the the TQM API
+used to create an authentication token from the currently logged in user to
+communicate the the TQM API
 
 ##### qe.tqm.loginByRegion(regionName) -returns Boolean (success)
 
-used to create an authentication token from the currently logged in user on the region provided as string parameter to communicate the the TQM API
+used to create an authentication token from the currently logged in user on the
+region provided as string parameter to communicate the the TQM API
 
 ##### qe.tqm.getActiveRegion(); - returns String
 
@@ -204,27 +249,31 @@ returns the active region user is currently logged in.
 
 ##### qe.tqm.getQueueListObject() - returns QueueListObject
 
-creates a request object to read the list of queues visible to the logged in user
+creates a request object to read the list of queues visible to the logged in
+user
 
 ##### qe.tqm.createQueue(queueName, ownerId) returns QueueObject
 
-create a request with the given parameters for creating a new queue, owned by the user (if a blank ownerId is given) or the organisation of the ownerId
+create a request with the given parameters for creating a new queue, owned by
+the user (if a blank ownerId is given) or the organisation of the ownerId
 
 ##### qe.tqm.getAuthToken() - returns AuthenticationObject
 
-returns the Authentication object which can be then used to get current authentication token usingAuthenticationObject.token(only available after calling
-the logIntoTaskQueueManager method)
+returns the Authentication object which can be then used to get current
+authentication token usingAuthenticationObject.token(only available after
+calling the logIntoTaskQueueManager method)
 
 ##### qe.tqm.setDiscoveryURL(String) - return Boolean (success)
 
-sets the base discovery URL used to communicating with the api (can e.g. be used to switch to a different region or localhost for debugging)
+sets the base discovery URL used to communicating with the api (can e.g. be used
+to switch to a different region or localhost for debugging)
 
 #### Queue List Level Methods
 
-
 ##### queueList.getQueues() returns an array of Queue objects
 
-after the request was loaded (async/sync) the list of queues is available in this array
+after the request was loaded (async/sync) the list of queues is available in
+this array
 
 ##### queueList.getQueueByID(queueId) returns a Queue Object
 
@@ -252,25 +301,29 @@ the name property of the queue
 
 ##### remoteOutputFilePath) - returns a Job request object
 
-creates a project file based job and attaches both the export preset and the project to the request object.
+creates a project file based job and attaches both the export preset and the
+project to the request object.
 
 ##### queue.prepareRemoteAMERenderProjectJob(jobName, localProjectFilePath, itemGUID, localExportPresetPath,
 
 ##### remoteOutputFilePath) - returns a Job request object
 
-createsproject file based job that will not be automatically be started and attaches both the export preset and the project to the request object.
+createsproject file based job that will not be automatically be started and
+attaches both the export preset and the project to the request object.
 
 ##### queue.createRemoteAMERenderJob(jobName, localTeamProjectSnapshotPath, localExportPresetPath, remoteOutputFilePath) -
 
 ##### returns a Job request object
 
-creates a team projects snapshot based job and attaches both the snapshot and export preset to the request object.
+creates a team projects snapshot based job and attaches both the snapshot and
+export preset to the request object.
 
 ##### queue.prepareRemoteAMERenderJob(jobName, localTeamProjectSnapshotPath, localExportPresetPath,
 
 ##### remoteOutputFilePath) - returns a Job request object
 
-creates a team projects snapshot based job that will not be automatically be started and attaches both the snapshot and export preset to the request object.
+creates a team projects snapshot based job that will not be automatically be
+started and attaches both the snapshot and export preset to the request object.
 
 ##### queue.loadSync() - returns queue id(success)
 
@@ -298,14 +351,15 @@ the creation timestamp of the job in the 'YYYY-MM-DDTHH:MM:SS.XXXZ'format.
 
 the estimated completion time inthe 'YYYY-MM-DDTHH:MM:SS.XXXZ'format.
 
-
 ##### job.lastModified- returns a String lastModified property
 
-the last modification timestamp of the job in the'YYYY-MM-DDTHH:MM:SS.XXXZ'format.
+the last modification timestamp of the job in
+the'YYYY-MM-DDTHH:MM:SS.XXXZ'format.
 
 ##### job.estimatedCompletion- returns a String estimatedCompletion property
 
-the estimated-completion timestamp of the job in the'YYYY-MM-DDTHH:MM:SS.XXXZ' format.
+the estimated-completion timestamp of the job in the'YYYY-MM-DDTHH:MM:SS.XXXZ'
+format.
 
 ##### job.state- returns a String state property
 
@@ -313,7 +367,8 @@ the current state of the job (i.e WAITING, PROGRESSING, COMPLETED, CANCELED)
 
 ##### job.type- returns a String type property
 
-the type of the job. (i.e AME.2020.encode, AE.2020.render, PPRO.2020.ingest, etc)
+the type of the job. (i.e AME.2020.encode, AE.2020.render, PPRO.2020.ingest,
+etc)
 
 ##### job.lockId- returns a String lockId property
 
@@ -337,8 +392,9 @@ status completion if job is in error state or not.(i.e. true, false)
 
 ##### job.addInput(name, pathToLocalFile) - returns Boolean (success)
 
-adds an input file the the job - (e.g. if the job is created via prepareRemoteAMERenderJob - the job will not be started and may receive additional input
-files, and can then be started via the job.start() call)
+adds an input file the the job - (e.g. if the job is created via
+prepareRemoteAMERenderJob - the job will not be started and may receive
+additional input files, and can then be started via the job.start() call)
 
 ##### job.start() - returns a Boolean (success)
 
@@ -362,28 +418,43 @@ process the request async (non-blocking)
 
 #### Additional Snapshot Methods
 
-##### app.project.rootItem.children[childNumber].saveProjectSnapshot(snapShotPath) 
-take childNumber as integer, snapShotPath as string and returns a Boolean (success)
+##### app.project.rootItem.children[childNumber].saveProjectSnapshot(snapShotPath)
 
-##### app.anywhere.openTeamProjectSnapshot(snapShotPath) 
- take snapShotPath as string and returns a Boolean (success)
+take childNumber as integer, snapShotPath as string and returns a Boolean
+(success)
 
-##### project.applyProjectSnapshot(snapShotPath, keepSessionProperties,deleteAssetsNotInSnapshot) 
-take snapShotPath as string, keepSessionProperties as boolean,  deleteAssetsNotInSnapshot as boolean returns a Boolean (success)
+##### app.anywhere.openTeamProjectSnapshot(snapShotPath)
 
-The snapshot contents will be merged into the currently-open Team Project. If keepSessionProperties is set to true, the existing properties will not be replaced; otherwise, the project name and description will be replaced by those of the snapshot. If deleteAssetsNotInSnapshot is set to true, any assets not in the snapshot will be deleted; otherwise, the snapshot will be merged into the existing project (snapshot assets will overwrite any existing identical assets).
+take snapShotPath as string and returns a Boolean (success)
 
-## Adobe Task Queue Manager API documentation
+##### project.applyProjectSnapshot(snapShotPath, keepSessionProperties,deleteAssetsNotInSnapshot)
+
+take snapShotPath as string, keepSessionProperties as boolean,
+deleteAssetsNotInSnapshot as boolean returns a Boolean (success)
+
+The snapshot contents will be merged into the currently-open Team Project. If
+keepSessionProperties is set to true, the existing properties will not be
+replaced; otherwise, the project name and description will be replaced by those
+of the snapshot. If deleteAssetsNotInSnapshot is set to true, any assets not in
+the snapshot will be deleted; otherwise, the snapshot will be merged into the
+existing project (snapshot assets will overwrite any existing identical assets).
+
+Adobe Task Queue Manager API documentation
+------------------------------------------
 
 ### Getting started with the Adobe Task Queue Manager API. The API uses the HAL JSON format: http://stateless.co/hal_specification.html. The API can be navigated by following the links starting from the discovery endpoint.
 
 ### Authentication
 
-The API supports authentication through a bearer token header and an api key. This can be generated via a JWT token workflow using the adobe.io integration: https://www.adobe.io/apis/cloudplatform/console/authentication/gettingstarted.html . Setting both the 'Authorization' and the 'X-Api-Key' header is required for every request.
+The API supports authentication through a bearer token header and an api key.
+This can be generated via a JWT token workflow using the adobe.io integration:
+https://www.adobe.io/apis/cloudplatform/console/authentication/gettingstarted.html
+. Setting both the 'Authorization' and the 'X-Api-Key' header is required for
+every request.
 
 ### Creating the worker keystore file and certificate
 
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 openssl req -nodes -text -x509 -newkey rsa:2048 -keyout secret.pem -out certificate.pem -days 356
 
 openssl pkcs8 -topk8 -inform PEM -outform DER -in secret.pem  -nocrypt > secret.key
@@ -395,13 +466,14 @@ keytool -importkeystore \
         -srckeystore my.p12 -srcstoretype PKCS12 -srcstorepass 123456
 
 keytool -changealias -keystore keystore.ks -alias 1 -destalias AdobePrivateKey
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-## Resources
+Resources
+---------
 
 ### Discovery Links
 
-* GET / 
+-   GET /
 
 Returns the list of all links available on the root API.
 
@@ -419,30 +491,31 @@ No request body.
 
 #### Response fields
 
-|  Path | Type | Optional | Description |
-| ------------- | ------------- | ------------- | ------------- |
-| activeRegion  | String  | true  |  |
-
+| Path         | Type   | Optional | Description |
+|--------------|--------|----------|-------------|
+| activeRegion | String | true     |             |
 
 #### Example request
 
-$ curl 'https://cloud-dispatcher-beta.adobe.io/' -i -X GET \
-    -H 'X-Api-Key: your-api-key' \
-    -H 'Authorization: Bearer the-access-token'
+\$ curl 'https://cloud-dispatcher-beta.adobe.io/' -i -X GET  
+-H 'X-Api-Key: your-api-key'  
+-H 'Authorization: Bearer the-access-token'
 
 #### Example response
 
 HTTP/1.1 200 OK
+
 Content-Type: application/hal+json;charset=UTF-8
+
 Content-Length: 797
 
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 { "activeRegion" : "region-unknown", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io" }, "jobs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/{?page,size}", "templated" : true }, "queues" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/{?page,size}", "templated" : true }, "workers" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/workers/{?page,size}", "templated" : true }, "region-ue1" : { "href" : "https://cloud-dispatcher-beta-ue1.adobe.io" }, "region-ew1" : { "href" : "https://cloud-dispatcher-beta-ew1.adobe.io" }, "region-an1" : { "href" : "https://cloud-dispatcher-beta-an1.adobe.io" } } }
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### List My jobs
 
-* GET /api/v1/jobs/
+-   GET /api/v1/jobs/
 
 #### Path parameters
 
@@ -450,13 +523,10 @@ No parameters.
 
 #### Query parameters
 
-
-|  Path | Type | Optional | Description |
-| ------------- | ------------- | ------------- | ------------- |
-| page  | Integer  | true  | Default value: '0'. |
-| size  | Integer  | true  | Default value: '50'. |
-
-
+| Path | Type    | Optional | Description          |
+|------|---------|----------|----------------------|
+| page | Integer | true     | Default value: '0'.  |
+| size | Integer | true     | Default value: '50'. |
 
 #### Request fields
 
@@ -464,24 +534,51 @@ No request body.
 
 #### Response fields
 
-|  Path | Type | Optional | Description |
-| ------------- | ------------- | ------------- | ------------- |
-| activeRegion  | String  | true  |  |
-
+| Path                          | Type          | Optional | Description |
+|-------------------------------|---------------|----------|-------------|
+| content                       | Array[Object] | true     |             |
+| content[].lastModified        | String        | false    |             |
+| content[].progressState       | String        | true     |             |
+| content[].estimatedCompletion | String        | true     |             |
+| content[].created             | String        | false    |             |
+| content[].lockId              | String        | true     |             |
+| content[].progress            | Decimal       | true     |             |
+| content[].name                | String        | true     |             |
+| content[].state               | String        | false    |             |
+| content[].type                | String        | false    |             |
+| content[].id                  | String        | false    |             |
+| page                          | Object        | true     |             |
+| page.size                     | Integer       | true     |             |
+| page.totalElements            | Integer       | true     |             |
+| page.totalPages               | Integer       | true     |             |
+| page.number                   | Integer       | true     |             |
 
 #### Example request
 
-$ curl 'https://cloud-dispatcher-beta.adobe.io/' -i -X GET \
-    -H 'X-Api-Key: your-api-key' \
-    -H 'Authorization: Bearer the-access-token'
+#### \$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/' -i -X GET \\
+
+####  -H 'X-Api-Key: your-api-key' \\
+
+####  -H 'Authorization: Bearer the-access-token'
 
 #### Example response
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 HTTP/1.1 200 OK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Content-Length: 2078
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Content-Type: application/hal+json;charset=UTF-8
-Content-Length: 797
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-```
-{ "activeRegion" : "region-unknown", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io" }, "jobs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/{?page,size}", "templated" : true }, "queues" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/{?page,size}", "templated" : true }, "workers" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/workers/{?page,size}", "templated" : true }, "region-ue1" : { "href" : "https://cloud-dispatcher-beta-ue1.adobe.io" }, "region-ew1" : { "href" : "https://cloud-dispatcher-beta-ew1.adobe.io" }, "region-an1" : { "href" : "https://cloud-dispatcher-beta-an1.adobe.io" } } }
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+{ "_embedded" : { "jobResourceList" : [ { "lastModified" : "2019-09-18T08:37:58.577138Z", "progressState" : null, "estimatedCompletion" : null, "created" : "2019-09-18T08:37:58.577133Z", "lockId" : "workerId", "progress" : 0.0, "name" : "Encode Project to MP4", "state" : "WAITING", "type" : "AME.2020.encode", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573" }, "inputs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/inputs" }, "inputs-presign" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/inputs/presign" }, "results" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/results" }, "results-presign" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/results/presign" }, "waitForCancel" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/waitFor/canceled" }, "job-updates" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2e46f6a6-a933-4192-b609-d3bb40242573/updatedSince/2019-09-18T08:37:58.577138Z" } }, "id" : "2e46f6a6-a933-4192-b609-d3bb40242573" } ] }, "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/?page=0&size=50&sort=lastModified,desc" }, "byId" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/{id}", "templated" : true }, "updates" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/since/2019-09-18T08:37:58.577138Z/" } }, "page" : { "size" : 50, "totalElements" : 1, "totalPages" : 1, "number" : 0 } }
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
