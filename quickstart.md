@@ -341,7 +341,58 @@ The snapshot contents will be merged into the currently-open Team Project. If ke
 
 ## Adobe Task Queue Manager API documentation
 
-## Table of Contents
+### Getting started with the Adobe Task Queue Manager API. The API uses the HAL JSON format: http://stateless.co/hal_specification.html. The API can be navigated by following the links starting from the discovery endpoint.
 
+### Authentication
 
+The API supports authentication through a bearer token header and an api key. This can be generated via a JWT token workflow using the adobe.io integration: https://www.adobe.io/apis/cloudplatform/console/authentication/gettingstarted.html . Setting both the 'Authorization' and the 'X-Api-Key' header is required for every request.
+
+### Creating the worker keystore file and certificate
+
+```
+openssl req -nodes -text -x509 -newkey rsa:2048 -keyout secret.pem -out certificate.pem -days 356
+
+openssl pkcs8 -topk8 -inform PEM -outform DER -in secret.pem  -nocrypt > secret.key
+
+openssl pkcs12 -export -in certificate.pem -inkey secret.pem   -out my.p12
+
+keytool -importkeystore \
+        -deststorepass 123456 -destkeypass 123456 -destkeystore keystore.ks \
+        -srckeystore my.p12 -srcstoretype PKCS12 -srcstorepass 123456
+
+keytool -changealias -keystore keystore.ks -alias 1 -destalias AdobePrivateKey
+```
+
+### Resources
+
+#### Discovery Links
+
+GET /
+
+Returns the list of all links available on the root API.
+
+Path parameters
+No parameters.
+
+Query parameters
+No parameters.
+
+Request fields
+No request body.
+
+Response fields
+PathTypeOptionalDescriptionactiveRegionStringtrue
+Example request
+$ curl 'https://cloud-dispatcher-beta.adobe.io/' -i -X GET \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Authorization: Bearer the-access-token'
+
+Example response
+HTTP/1.1 200 OK
+Content-Type: application/hal+json;charset=UTF-8
+Content-Length: 797
+
+```
+{ "activeRegion" : "region-unknown", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io" }, "jobs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/{?page,size}", "templated" : true }, "queues" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/{?page,size}", "templated" : true }, "workers" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/workers/{?page,size}", "templated" : true }, "region-ue1" : { "href" : "https://cloud-dispatcher-beta-ue1.adobe.io" }, "region-ew1" : { "href" : "https://cloud-dispatcher-beta-ew1.adobe.io" }, "region-an1" : { "href" : "https://cloud-dispatcher-beta-an1.adobe.io" } } }
+```
 
