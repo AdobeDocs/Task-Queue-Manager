@@ -1108,6 +1108,34 @@ $ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/39ecda56-974f-4dc8-
 #### Example Response
 HTTP/1.1 201 Created
 Location: https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/1261969c-59f6-4bee-943c-17fa97557c43
+### Create Premiere Pro AAF Conversion Job On Queue
+POST /api/v1/queues/{queueId}/jobs
+#### Path Parameters
+| Parameter | Type   | Optional | Description |
+|-----------|--------|----------|-------------|
+| queueId   | Object | false    |             |
+#### Query Parameters
+No parameters
+#### Request Fields
+| Part            | Description                                                                                                                 |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------|
+| jobDetails      | The job properties                                                                                                          |
+| script\.jsx     | The extendscript code to execute on the attached project\. The project is saved as a job result if the project was modified |
+| project\.prproj | The binary Project file                                                                                                     |
+#### Response Fields
+No response body
+#### Example Request
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/41b2a254-29b1-4598-9a9b-46ca9f7d754b/jobs' -i -X POST \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Content-Type: multipart/form-data' \
+    -H 'Authorization: Bearer the-access-token' \
+    -F 'jobDetails={"mixDownVideo":true,"format":"WAV or AIFF","embedAudio":true,"trimSources":true,"preset":"optional preset","type":"PPRO.2020.aaf-conversion","sampleRate":"48000 or 96000","explodeToMono":true,"outputFile":"\\\\a-network-drive\\folder\\file","bitsPerSample":"16 or 24","itemGUID":"2fa0cf57-f9ac-4486-9bd8-7f9d34ae6068","handleFrames":"number of 'handle' frames","name":"Premiere Pro AAF Conversion"}' \
+    -F 'script.jsx=<<script.jsx data>>' \
+    -F 'project.prproj=<<project.prproj data>>'
+#### Example Response
+HTTP/1.1 201 Created
+Location: https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/f3970f8a-f154-4785-8ec3-53ec6fb68077
+
 
 
 
