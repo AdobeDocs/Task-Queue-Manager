@@ -476,31 +476,31 @@ Resources
 
 Returns the list of all links available on the root API.
 
-#### Path parameters
+#### Path Parameters
 
 No parameters.
 
-#### Query parameters
+#### Query Parameters
 
 No parameters.
 
-#### Request fields
+#### Request Fields
 
 No request body.
 
-#### Response fields
+#### Response Fields
 
 | Path         | Type   | Optional | Description |
 |--------------|--------|----------|-------------|
 | activeRegion | String | true     |             |
 
-#### Example request
+#### Example Request
 
 \$ curl 'https://cloud-dispatcher-beta.adobe.io/' -i -X GET  
 -H 'X-Api-Key: your-api-key'  
 -H 'Authorization: Bearer the-access-token'
 
-#### Example response
+#### Example Response
 
 HTTP/1.1 200 OK
 
@@ -515,22 +515,22 @@ Content-Length: 797
 
 -   GET /api/v1/jobs/
 
-#### Path parameters
+#### Path Parameters
 
 No parameters.
 
-#### Query parameters
+#### Query Parameters
 
 | Path | Type    | Optional | Description          |
 |------|---------|----------|----------------------|
 | page | Integer | true     | Default value: '0'.  |
 | size | Integer | true     | Default value: '50'. |
 
-#### Request fields
+#### Request Fields
 
 No request body.
 
-#### Response fields
+#### Response Fields
 
 | Path                          | Type          | Optional | Description |
 |-------------------------------|---------------|----------|-------------|
@@ -551,7 +551,7 @@ No request body.
 | page.totalPages               | Integer       | true     |             |
 | page.number                   | Integer       | true     |             |
 
-#### Example request
+#### Example Request
 
 \$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/' -i -X GET \\
 
@@ -559,7 +559,7 @@ No request body.
 
 \-H 'Authorization: Bearer the-access-token'
 
-#### Example response
+#### Example Response
 
 HTTP/1.1 200 OK
 
@@ -576,18 +576,18 @@ Content-Type: application/hal+json;charset=UTF-8
 
 -   POST /api/v1/jobs/{id}/inputs/presign
 
-#### Path parameters
+#### Path Parameters
 
 | Parameter | Type   | Optional | Description |
 |-----------|--------|----------|-------------|
 | id        | Object | false    |		      |
 
 
-#### Query parameters
+#### Query Parameters
 
 No parameters
 
-#### Request fields
+#### Request Fields
 
 | Path                 | Type            | Optional | Description |
 |----------------------|-----------------|----------|-------------|
@@ -597,7 +597,7 @@ No parameters
 | payloads\[\]\.name   | String          | true     |		   |
 
 
-#### Response fields
+#### Response Fields
 
 | Path                                    | Type            | Optional | Description |
 |-----------------------------------------|-----------------|----------|-------------|
@@ -607,13 +607,13 @@ No parameters
 | signedPayloadPairs\[\]\.signedUploadURL | String          | true     |             |
 
 
-#### Example request
+#### Example Request
 
 curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/dd7d9b8e-f315-45dc-af9d-641f07e4b6e1/inputs/presign' -i -X POST \
     -H 'Content-Type: application/json' \
     -d '{"payloads":[{"index":1,"length":123,"name":"input.prproj"}]}'
 
-#### Example response
+#### Example Response
 
 HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
@@ -627,11 +627,11 @@ Content-Length: 124
 
 GET /api/v1/workers/
 
-#### Path parameters
+#### Path Parameters
 
 No parameters
 
-#### Query parameters
+#### Query Parameters
 
 | Parameter | Type    | Optional | Description           |
 |-----------|---------|----------|-----------------------|
