@@ -848,7 +848,7 @@ GET /api/v1/queues/{queueId}/jobs/
 |-----------|--------|----------|-------------|
 | queueId   | Object | false    |             |
 #### Request Fields
-No request boyd
+No request body
 #### Response Fields
 | Path                             | Type            | Optional | Description |
 |----------------------------------|-----------------|----------|-------------|
@@ -881,7 +881,33 @@ Content-Type: application/hal+json;charset=UTF-8
 
 { "_embedded" : { "jobResourceList" : [ { "lastModified" : "2019-09-18T08:37:58.661209Z", "progressState" : null, "estimatedCompletion" : null, "created" : "2019-09-18T08:37:58.661202Z", "lockId" : "workerId", "progress" : 0.0, "name" : "Encode Project to MP4", "state" : "WAITING", "type" : "AME.2020.encode", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/79034e66-8d82-4506-a353-bd98d2e1a798" }, "inputs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/79034e66-8d82-4506-a353-bd98d2e1a798/inputs" }, "inputs-presign" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/79034e66-8d82-4506-a353-bd98d2e1a798/inputs/presign" }, "results" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/79034e66-8d82-4506-a353-bd98d2e1a798/results" }, "results-presign" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/79034e66-8d82-4506-a353-bd98d2e1a798/results/presign" }, "waitForCancel" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/79034e66-8d82-4506-a353-bd98d2e1a798/waitFor/canceled" }, "job-updates" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/79034e66-8d82-4506-a353-bd98d2e1a798/updatedSince/2019-09-18T08:37:58.661209Z" } }, "id" : "79034e66-8d82-4506-a353-bd98d2e1a798" } ] }, "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/8287a220-4669-4735-8a0b-d4a4765c50f0/jobs/?page=0&size=50&sort=lastModified,desc" }, "queue-updates" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/8287a220-4669-4735-8a0b-d4a4765c50f0/jobs/since/2019-09-18T08:37:58.667906Z/" } }, "page" : { "size" : 50, "totalElements" : 1, "totalPages" : 1, "number" : 0 } }
 ```
-
+### Listen For Queue Job Updates
+GET /api/v1/queues/{queueId}/jobs/since/{since}/
+#### Path Parameters
+| Parameter | Type   | Optional | Description |
+|-----------|--------|----------|-------------|
+| queueId   | Object | false    |             |
+| since     | Object | false    |             |
+#### Query Parameters
+No parameters
+#### Request Fields
+No request body
+#### Response Fields
+| Path         | Type    | Optional | Description |
+|--------------|---------|----------|-------------|
+| result       | Object  | true     |             |
+| setOrExpired | Boolean | true     |             |
+#### Example Request
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/fe2e5e87-3dc5-4a7e-a034-8af03be4f22d/jobs/since/2019-09-18T08:37:58.038777Z/' -i -X GET \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Authorization: Bearer the-access-token'
+#### Example Response
+HTTP/1.1 200 OK
+Content-Type: application/hal+json;charset=UTF-8
+Content-Length: 1779
+```
+{ "_embedded" : { "jobResourceList" : [ { "lastModified" : "2019-09-18T08:37:58.038573Z", "progressState" : null, "estimatedCompletion" : null, "created" : "2019-09-18T08:37:58.038568Z", "lockId" : "workerId", "progress" : 0.0, "name" : "Encode Project to MP4", "state" : "WAITING", "type" : "AME.2020.encode", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/01d35155-5f34-426e-b243-0187fbf9357b" }, "inputs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/01d35155-5f34-426e-b243-0187fbf9357b/inputs" }, "inputs-presign" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/01d35155-5f34-426e-b243-0187fbf9357b/inputs/presign" }, "results" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/01d35155-5f34-426e-b243-0187fbf9357b/results" }, "results-presign" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/01d35155-5f34-426e-b243-0187fbf9357b/results/presign" }, "waitForCancel" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/01d35155-5f34-426e-b243-0187fbf9357b/waitFor/canceled" }, "job-updates" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/01d35155-5f34-426e-b243-0187fbf9357b/updatedSince/2019-09-18T08:37:58.038573Z" } }, "id" : "01d35155-5f34-426e-b243-0187fbf9357b" } ] }, "_links" : { "queue-updates" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/fe2e5e87-3dc5-4a7e-a034-8af03be4f22d/jobs/since/2019-09-18T08:37:58.038573Z/" } } }
+```
 
 
 
