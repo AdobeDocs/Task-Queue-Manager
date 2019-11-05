@@ -623,7 +623,53 @@ Content-Length: 124
 { "signedPayloadPairs" : [ { "index" : 0, "requestIndex" : 1, "signedUploadURL" : "https://signed-url" } ] }
 ```
 
+### List Workers
+
+GET /api/v1/workers/
+
+#### Path parameters
+
+No parameters
+
+#### Query parameters
+
+| Parameter | Type    | Optional | Description           |
+|-----------|---------|----------|-----------------------|
+| page      | Integer | true     | Default value: '0'\.  |
+| size      | Integer | true     | Default value: '50'\. |
 
 
+### Request Fields
 
+No request body
 
+### Response Fields
+
+| Path                        | Type            | Optional | Description|
+|-----------------------------|-----------------|----------|------------|
+| content                     | Array\[Object\] | true     |            |
+| content\[\]\.lastModified   | String          | true     |            |
+| content\[\]\.totalProcessed | Integer         | true     |            |
+| content\[\]\.name           | String          | true     |            |
+| content\[\]\.state          | String          | true     |            |
+| content\[\]\.owner          | String          | true     |            |
+| content\[\]\.id             | String          | true     |            |
+| page                        | Object          | true     |            |
+| page\.size                  | Integer         | true     |            |
+| page\.totalElements         | Integer         | true     |            |
+| page\.totalPages            | Integer         | true     |            |
+| page\.number                | Integer         | true     |            | 
+
+### Example Request
+
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/workers/' -i -X GET
+
+### Example Response
+
+HTTP/1.1 200 OK
+Content-Type: application/hal+json;charset=UTF-8
+Content-Length: 848
+
+```
+{ "_embedded" : { "workerResourceList" : [ { "lastModified" : "2019-09-18T08:38:02.514370Z", "totalProcessed" : 0, "name" : "Media Encoder Cluster Worker 1", "state" : "IDLE", "owner" : "orgid@AdobeOrg", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/workers/f845dca5-19bf-4939-8e1c-d891080e3ed0" } }, "id" : "f845dca5-19bf-4939-8e1c-d891080e3ed0" } ] }, "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/workers/?page=0&size=50&sort=lastModified,desc" }, "byId" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/workers{/id}", "templated" : true } }, "page" : { "size" : 50, "totalElements" : 1, "totalPages" : 1, "number" : 0 } }
+```
