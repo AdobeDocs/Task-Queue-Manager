@@ -1135,6 +1135,44 @@ $ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/41b2a254-29b1-4598-
 #### Example Response
 HTTP/1.1 201 Created
 Location: https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/f3970f8a-f154-4785-8ec3-53ec6fb68077
+### Patch Job
+PATCH /api/v1/jobs/{id}
+#### Path Parameters
+| Parameter | Type   | Optional | Description |
+|-----------|--------|----------|-------------|
+| id        | Object | false    |             |
+#### Query Parameters
+No parameters
+#### Request Fields
+| Path                | Type    | Optional | Description |
+|---------------------|---------|----------|-------------|
+| estimatedCompletion | String  | true     |             |
+| progress            | Decimal | true     |             |
+| progressState       | String  | true     |             |
+| state               | String  | true     |             |
+#### Response Fields
+| Path                | Type    | Optional | Description |
+|---------------------|---------|----------|-------------|
+| lastModified        | String  | false    |             |
+| progressState       | String  | true     |             |
+| estimatedCompletion | String  | true     |             |
+| created             | String  | false    |             |
+| lockId              | String  | true     |             |
+| progress            | Decimal | true     |             |
+| name                | String  | true     |             |
+| state               | String  | false    |             |
+| type                | String  | false    |             |
+| id                  | String  | false    |             |
+#### Example Request
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/55771b5e-455b-4c60-9164-5b24367887b7' -i -X PATCH \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Authorization: Bearer the-access-token' \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -d '{"state":"CANCELED"}'
+#### Example Response
+HTTP/1.1 204 No Content
+
+
 
 
 
