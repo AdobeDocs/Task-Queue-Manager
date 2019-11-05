@@ -45,11 +45,15 @@ Login using an administrator account of your domain on
 https://console.adobe.io/. And choose to create a new integration.
 
 <img width="1124" alt="AccountSetUp" src="https://user-images.githubusercontent.com/7715062/68188860-23c67580-ffd0-11e9-8706-8ef568bc0a45.png">
-
+<img width="856" alt="IntegrationsAccount" src="https://user-images.githubusercontent.com/7715062/68188957-5f613f80-ffd0-11e9-921f-f034d429e7ec.png">
 
 On the following screen choose "Access an API"
 
+<img width="1020" alt="AccessAnAPI" src="https://user-images.githubusercontent.com/7715062/68189089-a818f880-ffd0-11e9-900c-eea0c21df7d8.png">
+
 Choose "Task Queue Manager" from the list.
+
+<img width="1052" alt="ChoosetaskQueueManager" src="https://user-images.githubusercontent.com/7715062/68189122-be26b900-ffd0-11e9-90e9-221a046bf9a2.png">
 
 In the following screen you can name the integration and provide a security
 certificate used for authentication - see the "Creating the worker keystore file
@@ -59,9 +63,13 @@ https://www.adobe.io/authentication/auth-methods.html\#!AdobeDocs/adobeio-auth/m
 create-a-public-key-certificate. Drag the "certificate_pub.crt" into the drop
 box and continue.
 
+<img width="954" alt="Continue" src="https://user-images.githubusercontent.com/7715062/68189162-d7c80080-ffd0-11e9-938a-edb70f3aa185.png">
+
 The integration is now created and you can use the following page to retrieve
 all configuration values needed to setup a worker. (API_ADOBE_USER_ID in the
 config file refers to the Technical account ID on this page)
+
+<img width="1098" alt="IntegrationCreated" src="https://user-images.githubusercontent.com/7715062/68189233-f0d0b180-ffd0-11e9-8d6d-aeaf6893160a.png">
 
 ### Running as a process (for debugging only)
 
@@ -168,6 +176,8 @@ being used, they need to be taken care of also.
     menu next to Console and select Debug Database View. Search for debug flag
     AME.ScriptLayer.EnableNewWorld and change it to true by selecting the
     checkbox. New settings will take place on re launch.
+    
+    ![Debug](https://user-images.githubusercontent.com/7715062/68189300-0cd45300-ffd1-11e9-8737-69f7c6497c2d.png)
 
 Developer guide
 ---------------
