@@ -1080,6 +1080,33 @@ $ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/9bf5f2d0-eeaa-4318-
 #### Example Response
 HTTP/1.1 201 Created
 Location: https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2652083f-362a-441f-89b5-7977d42a8c36
+Create Premiere Pro OMF Conversion Job On Queue
+POST /api/v1/queues/{queueId}/jobs
+#### Path Parameters
+| Parameter | Type   | Optional | Description |
+|-----------|--------|----------|-------------|
+| queueId   | Object | false    |             |
+#### Query Parameters
+No parameters
+#### Request Fields
+| Part            | Description                                                                                                                 |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------|
+| jobDetails      | The job properties                                                                                                          |
+| script\.jsx     | The extendscript code to execute on the attached project\. The project is saved as a job result if the project was modified |
+| project\.prproj | The binary Project file                                                                                                     |
+#### Response Fields
+No response body
+#### Example Request
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/39ecda56-974f-4dc8-9e64-9ed8f456ddb0/jobs' -i -X POST \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Content-Type: multipart/form-data' \
+    -H 'Authorization: Bearer the-access-token' \
+    -F 'jobDetails={"handleFramesOut":"if trim is 1, handle frames from 0 to 1000","outputFile":"\\\\a-network-drive\\folder\\file","bitsPerSample":"16 or 24","encapsulation":true,"itemGUID":"64e9277d-706e-4821-8740-b8c4a5a914b0","trimAudio":true,"name":"Premiere Pro Script","format":"WAV or AIFF","type":"PPRO.2020.omf-conversion","title":"OMF Title","handeFramesIn":"if trim is 1, handle frames from 0 to 1000","sampleRate":"48000 or 96000"}' \
+    -F 'script.jsx=<<script.jsx data>>' \
+    -F 'project.prproj=<<project.prproj data>>'
+#### Example Response
+HTTP/1.1 201 Created
+Location: https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/1261969c-59f6-4bee-943c-17fa97557c43
 
 
 
