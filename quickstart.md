@@ -968,6 +968,35 @@ $ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/df4e5944-3d3a-45c3-
 #### Example Response
 HTTP/1.1 201 Created
 Location: https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/c455834c-b3af-4e5b-91db-93d8878ce81f
+### Create Project File Encode Job On Queue
+POST /api/v1/queues/{queueId}/jobs
+#### Path Parameters
+| Parameter | Type   | Optional | Description |
+|-----------|--------|----------|-------------|
+| queueId   | Object | false    |             |
+#### Query Parameters
+No parameters
+#### Request Fields
+| Part              | Description                                                   |
+|-------------------|---------------------------------------------------------------|
+| jobDetails        | The job properties                                            |
+| jobParameters\.js | The parameters passed to the worker, specific to the job type |
+| project\.prproj   | The binary Project file                                       |
+| exportPreset\.epr | The binary export preset                                      |
+#### Response Fields
+No response body
+#### Example Request
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/90f3b20c-55f6-425b-9ad8-72e76fdc510d/jobs' -i -X POST \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Content-Type: multipart/form-data' \
+    -H 'Authorization: Bearer the-access-token' \
+    -F 'jobDetails={"name":"Project File Export","type":"AME.2020.encode"}' \
+    -F 'jobParameters.js={"outputFile":"/worker/relative/output/directory/file.mp4","method":"addDLToBatch","itemGUID":"<optional sequenceId>"}' \
+    -F 'project.prproj=<<project.prproj data>>' \
+    -F 'exportPreset.epr=<<exportPreset.epr data>>'
+#### Example Response
+HTTP/1.1 201 Created
+Location: https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/4925d5ab-5b06-4e45-8f36-78c842aa046f
 
 
 
