@@ -939,6 +939,35 @@ $ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/1fe0c0ea-9193-4ea9-a5
     -H 'Content-Type: application/json;charset=UTF-8'
 #### Example Response
 HTTP/1.1 204 No Content
+### Create Team Project Encode Job On Queue
+POST /api/v1/queues/{queueId}/jobs
+#### Path Parameters
+| Parameter | Type   | Optional | Description |
+|-----------|--------|----------|-------------|
+| queueId   | Object | false    |             |
+#### Query Parameters
+No parameters
+#### Request Fields
+| Part              | Description                                                   |
+|-------------------|---------------------------------------------------------------|
+| jobDetails        | The job properties                                            |
+| jobParameters\.js | The parameters passed to the worker, specific to the job type |
+| project\.tp2snap  | The binary Team Projects snapshot                             |
+| exportPreset\.epr | The binary export preset                                      |
+#### Response Fields
+No response body
+#### Example Request
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/df4e5944-3d3a-45c3-aa27-478cdc42f629/jobs' -i -X POST \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Content-Type: multipart/form-data' \
+    -H 'Authorization: Bearer the-access-token' \
+    -F 'jobDetails={"name":"Team Projects Export","type":"AME.2020.encode"}' \
+    -F 'jobParameters.js={"outputFile":"/worker/relative/output/directory/file.mp4","method":"addTeamProjectsItemToBatch"}' \
+    -F 'project.tp2snap=<<project.tp2snap data>>' \
+    -F 'exportPreset.epr=<<exportPreset.epr data>>'
+#### Example Response
+HTTP/1.1 201 Created
+Location: https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/c455834c-b3af-4e5b-91db-93d8878ce81f
 
 
 
