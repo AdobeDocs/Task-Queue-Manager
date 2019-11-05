@@ -768,5 +768,35 @@ Content-Length: 1289
 { "_embedded" : { "queueResourceList" : [ { "name" : "Media Encoder Queue Hamburg", "owner" : "example ORG", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/6fd0e4da-dd03-4a05-be99-848b7f71c09a" }, "listen" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/6fd0e4da-dd03-4a05-be99-848b7f71c09a/listen" }, "progressingBy" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/6fd0e4da-dd03-4a05-be99-848b7f71c09a/jobs/progressingBy/{lockId}{?page,size}", "templated" : true }, "jobs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/6fd0e4da-dd03-4a05-be99-848b7f71c09a/jobs{?page,size}", "templated" : true } }, "id" : "6fd0e4da-dd03-4a05-be99-848b7f71c09a" } ] }, "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues?page=0&size=50&sort=lastModified,desc" }, "byId" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues{/id}", "templated" : true } }, "page" : { "size" : 50, "totalElements" : 1, "totalPages" : 1, "number" : 0 } }
 ```
 
+### Find Queue
+GET /api/v1/queues/{id}
+#### Path Parameters
+| Parameter | Type   | Optional | Description |
+|-----------|--------|----------|-------------|
+| id        | Object | false    |             |
+#### Query Parameter
+No parameters
+#### Request Fields
+No request body
+#### Response Fields
+| Path  | Type   | Optional | Description |
+|-------|--------|----------|-------------|
+| name  | String | true     |             |
+| owner | String | false    |             |
+| id    | String | false    |             |
+#### Example Request
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/b0ef78d4-bd8e-4979-bd04-2ae76f10cc69' -i -X GET \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Authorization: Bearer the-access-token'
+#### Example Response
+HTTP/1.1 200 OK
+Content-Type: application/hal+json;charset=UTF-8
+Content-Length: 782
+```
+{ "name" : "Media Encoder Queue Hamburg", "owner" : "example ORG", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/b0ef78d4-bd8e-4979-bd04-2ae76f10cc69" }, "listen" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/b0ef78d4-bd8e-4979-bd04-2ae76f10cc69/listen" }, "progressingBy" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/b0ef78d4-bd8e-4979-bd04-2ae76f10cc69/jobs/progressingBy/{lockId}{?page,size}", "templated" : true }, "jobs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/b0ef78d4-bd8e-4979-bd04-2ae76f10cc69/jobs{?page,size}", "templated" : true } }, "id" : "b0ef78d4-bd8e-4979-bd04-2ae76f10cc69" }
+```
+
+
+
 
 
