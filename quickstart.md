@@ -1053,6 +1053,33 @@ $ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/c1d7e767-11d0-445b-
 #### Example Response
 HTTP/1.1 201 Created
 Location: https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/8cc9e1d5-c751-4350-b101-cc14221e36b5
+### Create Premiere Pro Ingest Job On Queue
+POST /api/v1/queues/{queueId}/jobs
+#### Path parameters
+| Parameter | Type   | Optional | Description |
+|-----------|--------|----------|-------------|
+| queueId   | Object | false    |             |
+#### Query Parameters
+No parameters
+#### Request Fields
+| Part              | Description                                                   |
+|-------------------|---------------------------------------------------------------|
+| jobDetails        | The job properties                                            |
+| jobParameters\.js | The parameters passed to the worker, specific to the job type |
+| project\.prproj   | The binary Project file                                       |
+#### Response Fields
+No response body
+#### Example Request
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/9bf5f2d0-eeaa-4318-a572-42f7b929205f/jobs' -i -X POST \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Content-Type: multipart/form-data' \
+    -H 'Authorization: Bearer the-access-token' \
+    -F 'jobDetails={"name":"Premiere Pro Ingest","type":"PPRO.2020.ingest"}' \
+    -F 'jobParameters.js={"files":["/path/to/ingest/file.mp4","/other/path/to/ingest/file.mov"]}' \
+    -F 'project.prproj=<<project.prproj data>>'
+#### Example Response
+HTTP/1.1 201 Created
+Location: https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/2652083f-362a-441f-89b5-7977d42a8c36
 
 
 
