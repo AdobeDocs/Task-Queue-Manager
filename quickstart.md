@@ -472,7 +472,7 @@ Resources
 
 ### Discovery Links
 
--   GET /
+GET /
 
 Returns the list of all links available on the root API.
 
