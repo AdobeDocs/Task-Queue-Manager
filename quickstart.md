@@ -44,6 +44,9 @@ Account setup
 Login using an administrator account of your domain on
 https://console.adobe.io/. And choose to create a new integration.
 
+<img width="1124" alt="AccountSetUp" src="https://user-images.githubusercontent.com/7715062/68188860-23c67580-ffd0-11e9-8706-8ef568bc0a45.png">
+
+
 On the following screen choose "Access an API"
 
 Choose "Task Queue Manager" from the list.
