@@ -1026,6 +1026,33 @@ $ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/8e99ca89-2a2e-46ad-
 #### Example Response
 HTTP/1.1 201 Created
 Location: https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/1fa36ae9-9025-4316-9762-5b5be2c22e5f
+### Create Team Project Script Job On Queue
+POST /api/v1/queues/{queueId}/jobs
+#### Path Parameters
+| Parameter | Type   | Optional | Description |
+|-----------|--------|----------|-------------|
+| queueId   | Object | false    |             |
+#### Query Parameters
+No parameters
+#### Request Fields
+| Part              | Description                                                                                                                 |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| jobDetails        | The job properties                                                                                                          |
+| script\.jsx       | The extendscript code to execute on the attached project\. The project is saved as a job result if the project was modified |
+| snapshot\.tp2snap | The binary Team Projects Snapshot file                                                                                      |
+#### Response Fields
+No response body
+#### Example Request
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/c1d7e767-11d0-445b-b5ca-4c6f66853a5d/jobs' -i -X POST \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Content-Type: multipart/form-data' \
+    -H 'Authorization: Bearer the-access-token' \
+    -F 'jobDetails={"name":"Team Project Script","type":"PPRO.2020.script"}' \
+    -F 'script.jsx=<<script.jsx data>>' \
+    -F 'snapshot.tp2snap=<<snapshot.tp2snap data>>'
+#### Example Response
+HTTP/1.1 201 Created
+Location: https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/8cc9e1d5-c751-4350-b101-cc14221e36b5
 
 
 
