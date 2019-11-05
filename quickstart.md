@@ -841,6 +841,46 @@ $ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/36b9e5bd-5883-435d-
     -d '{"name":"Media Encoder Queue Munich","owner":"orgId@AdobeOrg"}'
 #### Example Response
 HTTP/1.1 204 No Content
+### List Jobs By Queue
+GET /api/v1/queues/{queueId}/jobs/
+#### Path Parameters
+| Parameter | Type   | Optional | Description |
+|-----------|--------|----------|-------------|
+| queueId   | Object | false    |             |
+#### Request Fields
+No request boyd
+#### Response Fields
+| Path                             | Type            | Optional | Description |
+|----------------------------------|-----------------|----------|-------------|
+| content                          | Array\[Object\] | true     |             |
+| content\[\]\.lastModified        | String          | false    |             |
+| content\[\]\.progressState       | String          | true     |             |
+| content\[\]\.estimatedCompletion | String          | true     |             |
+| content\[\]\.created             | String          | false    |             |
+| content\[\]\.lockId              | String          | true     |             |
+| content\[\]\.progress            | Decimal         | true     |             |
+| content\[\]\.name                | String          | true     |             |
+| content\[\]\.state               | String          | false    |             |
+| content\[\]\.type                | String          | false    |             |
+| content\[\]\.id                  | String          | false    |             |
+| page                             | Object          | true     |             |
+| page\.size                       | Integer         | true     |             |
+| page\.totalElements              | Integer         | true     |             |
+| page\.totalPages                 | Integer         | true     |             |
+| page\.number                     | Integer         | true     |             |
+
+#### Example Request
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/8287a220-4669-4735-8a0b-d4a4765c50f0/jobs/' -i -X GET \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Authorization: Bearer the-access-token'
+#### Example Response
+HTTP/1.1 200 OK
+Content-Length: 2051
+Content-Type: application/hal+json;charset=UTF-8
+```
+
+{ "_embedded" : { "jobResourceList" : [ { "lastModified" : "2019-09-18T08:37:58.661209Z", "progressState" : null, "estimatedCompletion" : null, "created" : "2019-09-18T08:37:58.661202Z", "lockId" : "workerId", "progress" : 0.0, "name" : "Encode Project to MP4", "state" : "WAITING", "type" : "AME.2020.encode", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/79034e66-8d82-4506-a353-bd98d2e1a798" }, "inputs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/79034e66-8d82-4506-a353-bd98d2e1a798/inputs" }, "inputs-presign" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/79034e66-8d82-4506-a353-bd98d2e1a798/inputs/presign" }, "results" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/79034e66-8d82-4506-a353-bd98d2e1a798/results" }, "results-presign" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/79034e66-8d82-4506-a353-bd98d2e1a798/results/presign" }, "waitForCancel" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/79034e66-8d82-4506-a353-bd98d2e1a798/waitFor/canceled" }, "job-updates" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/79034e66-8d82-4506-a353-bd98d2e1a798/updatedSince/2019-09-18T08:37:58.661209Z" } }, "id" : "79034e66-8d82-4506-a353-bd98d2e1a798" } ] }, "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/8287a220-4669-4735-8a0b-d4a4765c50f0/jobs/?page=0&size=50&sort=lastModified,desc" }, "queue-updates" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/8287a220-4669-4735-8a0b-d4a4765c50f0/jobs/since/2019-09-18T08:37:58.667906Z/" } }, "page" : { "size" : 50, "totalElements" : 1, "totalPages" : 1, "number" : 0 } }
+```
 
 
 
