@@ -673,3 +673,48 @@ Content-Length: 848
 ```
 { "_embedded" : { "workerResourceList" : [ { "lastModified" : "2019-09-18T08:38:02.514370Z", "totalProcessed" : 0, "name" : "Media Encoder Cluster Worker 1", "state" : "IDLE", "owner" : "orgid@AdobeOrg", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/workers/f845dca5-19bf-4939-8e1c-d891080e3ed0" } }, "id" : "f845dca5-19bf-4939-8e1c-d891080e3ed0" } ] }, "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/workers/?page=0&size=50&sort=lastModified,desc" }, "byId" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/workers{/id}", "templated" : true } }, "page" : { "size" : 50, "totalElements" : 1, "totalPages" : 1, "number" : 0 } }
 ```
+
+#### Delete Worker
+
+DELETE /api/v1/workers/{id}
+Deletes the worker activity data.
+
+### Path Parameters
+
+| Parameter | Type   | Optional | Description |
+|-----------|--------|----------|-------------|
+| id        | Object | false    |             |
+
+
+### Query Parameters
+
+No parameters
+
+
+### Request Fields
+
+No request body
+
+### Response Fields
+
+| Path           | Type    | Optional | Description |
+|----------------|---------|----------|-------------|
+| lastModified   | String  | true     |             |
+| totalProcessed | Integer | true     |             |
+| name           | String  | true     |             |
+| state          | String  | true     |             |
+| owner          | String  | true     |             |
+| id             | String  | true     |             |
+
+### Example Request
+
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/workers/f895c6d6-4709-45b7-babe-06d93ff573a5' -i -X DELETE \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Authorization: Bearer the-access-token' \
+    -H 'Content-Type: application/json;charset=UTF-8'
+
+### Example Response
+
+HTTP/1.1 204 No Content
+
+
