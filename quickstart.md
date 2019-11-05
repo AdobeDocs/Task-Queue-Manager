@@ -817,6 +817,30 @@ $ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues' -i -X POST \
 #### Example Response
 HTTP/1.1 201 Created
 Location: https://cloud-dispatcher-beta.adobe.io/api/v1/queues/7f269d3e-2f21-4e4f-bb43-7beecb8694e3
+### Delete Queue
+DELETE /api/v1/queues/{id}
+#### Path Parameters
+| Parameter | Type   | Optional | Description |
+|-----------|--------|----------|-------------|
+| id        | Object | false    |             |
+#### Query Parameters
+No parameters
+#### Request Fields
+No request body
+#### Response Fields
+| Path  | Type   | Optional | Description |
+|-------|--------|----------|-------------|
+| name  | String | true     |             |
+| owner | String | false    |             |
+| id    | String | false    |             |
+#### Example Request
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues/36b9e5bd-5883-435d-af54-549b45b52368' -i -X DELETE \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Authorization: Bearer the-access-token' \
+    -H 'Content-Type: application/json' \
+    -d '{"name":"Media Encoder Queue Munich","owner":"orgId@AdobeOrg"}'
+#### Example Response
+HTTP/1.1 204 No Content
 
 
 
