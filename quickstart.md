@@ -795,6 +795,31 @@ Content-Length: 782
 ```
 { "name" : "Media Encoder Queue Hamburg", "owner" : "example ORG", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/b0ef78d4-bd8e-4979-bd04-2ae76f10cc69" }, "listen" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/b0ef78d4-bd8e-4979-bd04-2ae76f10cc69/listen" }, "progressingBy" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/b0ef78d4-bd8e-4979-bd04-2ae76f10cc69/jobs/progressingBy/{lockId}{?page,size}", "templated" : true }, "jobs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/b0ef78d4-bd8e-4979-bd04-2ae76f10cc69/jobs{?page,size}", "templated" : true } }, "id" : "b0ef78d4-bd8e-4979-bd04-2ae76f10cc69" }
 ```
+### Create Queue
+POST /api/v1/queues
+#### Path Parameters
+No parameters
+#### Query Parameters
+No parameters
+#### Request Fields
+| Path  | Type   | Optional | Description |
+|-------|--------|----------|-------------|
+| name  | String | false    |             |
+| owner | String | true     |             |
+#### Response Fields
+No response body
+#### Example Request
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/queues' -i -X POST \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Authorization: Bearer the-access-token' \
+    -H 'Content-Type: application/json' \
+    -d '{"name":"Media Encoder Queue Munich","owner":"orgId@AdobeOrg"}'
+#### Example Response
+HTTP/1.1 201 Created
+Location: https://cloud-dispatcher-beta.adobe.io/api/v1/queues/7f269d3e-2f21-4e4f-bb43-7beecb8694e3
+
+
+
 
 
 
