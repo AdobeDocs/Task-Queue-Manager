@@ -19,6 +19,9 @@ deployed to any computer running PremierePro or Adobe Media Encoder. The content
 of e.g. encode jobs is composed of the project file (or team project snapshot)
 an optional export preset file and meta data.
 
+![TQM Overview](https://user-images.githubusercontent.com/7715062/68188649-a69b0080-ffcf-11e9-9343-85215fffec79.png)
+
+
 Installing a worker
 -------------------
 
