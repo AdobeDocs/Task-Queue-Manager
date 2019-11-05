@@ -908,7 +908,37 @@ Content-Length: 1779
 ```
 { "_embedded" : { "jobResourceList" : [ { "lastModified" : "2019-09-18T08:37:58.038573Z", "progressState" : null, "estimatedCompletion" : null, "created" : "2019-09-18T08:37:58.038568Z", "lockId" : "workerId", "progress" : 0.0, "name" : "Encode Project to MP4", "state" : "WAITING", "type" : "AME.2020.encode", "_links" : { "self" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/01d35155-5f34-426e-b243-0187fbf9357b" }, "inputs" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/01d35155-5f34-426e-b243-0187fbf9357b/inputs" }, "inputs-presign" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/01d35155-5f34-426e-b243-0187fbf9357b/inputs/presign" }, "results" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/01d35155-5f34-426e-b243-0187fbf9357b/results" }, "results-presign" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/01d35155-5f34-426e-b243-0187fbf9357b/results/presign" }, "waitForCancel" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/01d35155-5f34-426e-b243-0187fbf9357b/waitFor/canceled" }, "job-updates" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/01d35155-5f34-426e-b243-0187fbf9357b/updatedSince/2019-09-18T08:37:58.038573Z" } }, "id" : "01d35155-5f34-426e-b243-0187fbf9357b" } ] }, "_links" : { "queue-updates" : { "href" : "https://cloud-dispatcher-beta.adobe.io/api/v1/queues/fe2e5e87-3dc5-4a7e-a034-8af03be4f22d/jobs/since/2019-09-18T08:37:58.038573Z/" } } }
 ```
+### Delete Job
+DELETE /api/v1/jobs/{id}
+#### Path Parameters
+| Parameter | Type   | Optional | Description |
+|-----------|--------|----------|-------------|
+| id        | Object | false    |             |
+#### Query Parameters
+No parameters
+#### Request Fields
+No request body
+#### Response Fields
+| Path                | Type    | Optional | Description |
+|---------------------|---------|----------|-------------|
+| lastModified        | String  | false    |             |
+| progressState       | String  | true     |             |
+| estimatedCompletion | String  | true     |             |
+| created             | String  | false    |             |
+| lockId              | String  | true     |             |
+| progress            | Decimal | true     |             |
+| name                | String  | true     |             |
+| state               | String  | false    |             |
+| type                | String  | false    |             |
+| id                  | String  | false    |             |
 
+#### Example Request
+$ curl 'https://cloud-dispatcher-beta.adobe.io/api/v1/jobs/1fe0c0ea-9193-4ea9-a51b-824241e309a1' -i -X DELETE \
+    -H 'X-Api-Key: your-api-key' \
+    -H 'Authorization: Bearer the-access-token' \
+    -H 'Content-Type: application/json;charset=UTF-8'
+#### Example Response
+HTTP/1.1 204 No Content
 
 
 
