@@ -142,6 +142,8 @@ which is not the default on Premiere Pro/ AME 14.0.0 builds. Therefore in order
 to use Task Queue Manager, New World needs to be enabled on all clients and
 worker machine using one of the following methods.
 
+Note: This is not required in Premiere Pro builds 14.0.1 or later as NewWorld is enabled by default in these builds.
+
 1.  Quit Premiere Pro/ Media Encoder. Copy attached debug files for AME and
     Premiere Pro and replace them at following location.
 
